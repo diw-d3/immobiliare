@@ -1,0 +1,15 @@
+/*
+Theme Name:   Immobiliare
+Theme URI:    https://wp.boxydev.com/theme/immobiliare
+Description:  Un thème pour les agences immobilières
+Author:       Vous
+Author URI:   https://vous.fr
+Version:      1.0.0
+License:      GNU General Public License v2 or later
+License URI:  http://www.gnu.org/licenses/gpl-2.0.html
+*/
+
+.card-img-top {
+	object-fit: fill; /* Transforme une balise img en background-image */
+    max-height: 170px;
+}
