@@ -27,3 +27,19 @@ add_filter('the_generator', 'remove_wordpress_version');
 
 // Image à la une
 add_theme_support( 'post-thumbnails' );
+
+// Ajout d'un emplacement de menu
+function register_my_menu() {
+    register_nav_menu('main-menu', 'Menu principal');
+}
+
+add_action( 'init', 'register_my_menu' );
+
+/**
+ * Register Custom Navigation Walker
+ */
+function register_navwalker(){
+    require_once get_template_directory() . '/class-wp-bootstrap-navwalker.php';
+}
+
+add_action( 'after_setup_theme', 'register_navwalker' );
