@@ -28,7 +28,7 @@ the_post(); // Requête SQL qui récupère les informations de l'article
 			<h1><?php the_title(); ?></h1>
 			<p>Date : <?php the_date(); ?></p>
 			<p>Auteur : <?php the_author(); ?></p>
-			<p>Catégories : <?php the_category(); ?></p>
+			<p>Ville : <?php the_terms( $post->ID, 'city' ); ?></p>
 
 			<div>
 				<?php the_content(); ?>
@@ -36,10 +36,8 @@ the_post(); // Requête SQL qui récupère les informations de l'article
 		</div>
 	</div>
 
-	<a class="btn btn-primary mt-4" href="<?= get_the_permalink( 16 ); ?>">Retour aux articles</a>
+	<a class="btn btn-primary mt-4" href="<?= get_post_type_archive_link( 'housing' ); ?>">Retour aux annonces</a>
 </div>
-
-
 
 <?php
 // Reprendre le footer

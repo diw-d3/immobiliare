@@ -44,7 +44,15 @@
 	      </form>
 		</nav>
 
-    	<div class="container text-center">
-    		<h1>Bienvenue sur le site <?php bloginfo('name'); ?></h1>
+    	<div class="container text-center py-4">
+
+    		<?php
+	    		// Si on est sur la page qui liste les annonces par ville
+	    		if (is_tax('city')) { ?>
+    			<h1>Nos biens à <?php single_term_title(); ?></h1>
+    		<?php } else { ?>
+    			<h1>Bienvenue sur le site <?php bloginfo('name'); ?></h1>
+    		<?php } ?>
+
     		<p><?php bloginfo('description'); ?></p>
     	</div>

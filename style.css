@@ -9,6 +9,10 @@ License:      GNU General Public License v2 or later
 License URI:  http://www.gnu.org/licenses/gpl-2.0.html
 */
 
+body {
+	font-family: 'Nunito', sans-serif;
+}
+
 .card-img-top {
 	object-fit: fill; /* Transforme une balise img en background-image */
     max-height: 170px;

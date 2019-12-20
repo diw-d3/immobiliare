@@ -3,6 +3,8 @@
 function immobiliare_enqueue_styles() {
 	// Ajouter Bootstrap ici via le CDN
 	wp_enqueue_style( 'bootstrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' );
+    // Ajout de la police
+    wp_enqueue_style( 'nunito', 'https://fonts.googleapis.com/css?family=Nunito&display=swap' );
     wp_enqueue_style( 'style', get_template_directory_uri() . '/style.css' );
 
     // On supprimer le jQuery de WordPress
@@ -72,6 +74,24 @@ function register_housing() {
         'has_archive' => true,
         'show_in_rest' => true, // Si on veut activer Gutenberg
         'menu_icon' => 'dashicons-admin-home'
+    ]);
+
+    register_taxonomy('city', 'housing', [
+        'label' => 'Villes',
+        'labels' => [
+            'name' => 'Villes',
+            'singular_name' => 'Ville',
+            'all_items' => 'Toutes les villes',
+            'edit_item' => 'Éditer la ville',
+            'view_item' => 'Voir la ville',
+            'update_item' => 'Mettre à jour la ville',
+            'add_new_item' => 'Ajouter une ville',
+            'new_item_name' => 'Nouvelle ville',
+            'search_items' => 'Rechercher parmi les villes',
+            'popular_items' => 'Villes les plus utilisées'
+        ],
+        'hierarchical' => false,
+        'show_in_rest' => true, // Pour Gutenberg
     ]);
 }
 
