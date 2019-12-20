@@ -46,3 +46,33 @@ add_action( 'after_setup_theme', 'register_navwalker' );
 
 // Add logo
 add_theme_support( 'custom-logo' );
+
+// Background
+add_theme_support( 'custom-background' );
+
+
+// Ajout de la table "biens"
+function register_housing() {
+    register_post_type('housing', [
+        'label' => 'Biens immobiliers',
+        'labels' => [
+            'name' => 'Biens immobiliers',
+            'singular_name' => 'Bien immobilier',
+            'all_items' => 'Tous les biens',
+            'add_new_item' => 'Ajouter un bien',
+            'edit_item' => 'Éditer le bien',
+            'new_item' => 'Nouveau bien',
+            'view_item' => 'Voir le bien',
+            'search_items' => 'Rechercher parmi les biens',
+            'not_found' => 'Pas de bien trouvé',
+            'not_found_in_trash' => 'Pas de bien dans la corbeille'
+        ],
+        'public' => true,
+        'supports' => ['title', 'editor', 'author', 'thumbnail'],
+        'has_archive' => true,
+        'show_in_rest' => true, // Si on veut activer Gutenberg
+        'menu_icon' => 'dashicons-admin-home'
+    ]);
+}
+
+add_action( 'init', 'register_housing' );

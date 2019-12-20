@@ -7,8 +7,8 @@
         // Fonction qui charge tous les styles css de WP
         wp_head(); ?>
     </head>
-    <body>
-    	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <body <?= body_class(); ?>>
+    	<nav class="navbar navbar-expand-lg navbar-light bg-white">
 		  <a class="navbar-brand" href="<?php echo home_url(); ?>">
 		  	<?php
 		  		// On récupère le logo en BO
@@ -18,7 +18,7 @@
 				if (false === $custom_logo_url) { // Si pas de logo, on affiche simplement le titre du site
 					bloginfo('name');
 				} else { ?>
-					<img width="50" src="<?= esc_url( $custom_logo_url ) ?>" alt="<?php bloginfo('name'); ?>">
+					<img width="30" src="<?= esc_url( $custom_logo_url ) ?>" alt="<?php bloginfo('name'); ?>">
 				<?php } ?>
 		  </a>
 		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
@@ -44,5 +44,7 @@
 	      </form>
 		</nav>
 
-    	<h1>Bienvenue sur le site <?php bloginfo('name'); ?></h1>
-    	<p><?php bloginfo('description'); ?></p>
+    	<div class="container text-center">
+    		<h1>Bienvenue sur le site <?php bloginfo('name'); ?></h1>
+    		<p><?php bloginfo('description'); ?></p>
+    	</div>

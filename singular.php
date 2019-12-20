@@ -36,7 +36,7 @@ the_post(); // Requête SQL qui récupère les informations de l'article
 		</div>
 	</div>
 
-	<a class="btn btn-primary mt-4" href="<?= home_url(); ?>">Retour aux annonces</a>
+	<a class="btn btn-primary mt-4" href="<?= get_post_type_archive_link( 'housing' ); ?>">Retour aux annonces</a>
 </div>
 
 <?php
