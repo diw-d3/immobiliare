@@ -96,3 +96,36 @@ function register_housing() {
 }
 
 add_action( 'init', 'register_housing' );
+
+function init_meta_boxe() {
+    add_meta_box( 'my_meta', 'Informations', 'display_meta_boxe', 'housing' );
+}
+
+function display_meta_boxe( $post ) {
+    $price = get_post_meta( $post->ID, '_price', true );
+    $surface = get_post_meta( $post->ID, '_surface', true );
+    ?>
+    <div>
+        <label for="price">Prix : </label> <br />
+        <input id="price" type="text" name="price" value="<?= $price; ?>" />
+    </div> <br />
+
+    <div>
+        <label for="surface">Surface : </label> <br />
+        <input id="surface" type="text" name="surface" value="<?= $surface; ?>" />
+    </div>
+<?php }
+
+add_action( 'add_meta_boxes', 'init_meta_boxe' );
+
+function save_meta_boxe( $id_post ) {
+    if ( isset( $_POST['price'] ) ) {
+        update_post_meta( $id_post, '_price', esc_html($_POST['price']) );
+    }
+
+    if ( isset( $_POST['surface'] ) ) {
+        update_post_meta( $id_post, '_surface', esc_html($_POST['surface']) );
+    }
+}
+
+add_action( 'save_post', 'save_meta_boxe' );
