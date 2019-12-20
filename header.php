@@ -9,7 +9,18 @@
     </head>
     <body>
     	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		  <a class="navbar-brand" href="<?php echo home_url(); ?>"><?php bloginfo('name'); ?></a>
+		  <a class="navbar-brand" href="<?php echo home_url(); ?>">
+		  	<?php
+		  		// On récupère le logo en BO
+		  		$custom_logo_id = get_theme_mod( 'custom_logo' );
+				$custom_logo_url = wp_get_attachment_image_url( $custom_logo_id , 'full' );
+
+				if (false === $custom_logo_url) { // Si pas de logo, on affiche simplement le titre du site
+					bloginfo('name');
+				} else { ?>
+					<img width="50" src="<?= esc_url( $custom_logo_url ) ?>" alt="<?php bloginfo('name'); ?>">
+				<?php } ?>
+		  </a>
 		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
 		    <span class="navbar-toggler-icon"></span>
 		  </button>
