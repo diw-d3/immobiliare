@@ -14,9 +14,10 @@ function immobiliare_enqueue_styles() {
     wp_enqueue_script( 'popper', 'https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js', [], false, true );
     wp_enqueue_script( 'bootstrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js', ['jquery'], false, true );
     // On ajoute notre JS
-    wp_enqueue_script( 'app', get_template_directory_uri() . '/js/app.js', [], false, true );
+    wp_enqueue_script( 'app', get_template_directory_uri() . '/assets/js/app.js', ['jquery'], false, true );
 }
 
+// On attache la fonction 'immobiliare_enqueue_styles' au hook 'wp_enqueue_scripts'
 add_action( 'wp_enqueue_scripts', 'immobiliare_enqueue_styles' );
 
 // On supprime la meta qui affiche la version de WordPress
@@ -129,3 +130,55 @@ function save_meta_boxe( $id_post ) {
 }
 
 add_action( 'save_post', 'save_meta_boxe' );
+
+/*
+CREATE TABLE `wordpress`.`af567_contact` ( `id` INT UNSIGNED NOT NULL AUTO_INCREMENT , `reference` VARCHAR(255) NOT NULL , `housing_id` INT NOT NULL , `lastname` VARCHAR(255) NOT NULL , `firstname` VARCHAR(255) NOT NULL , `message` TEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+*/
+
+// Ce hook est executé au moment où le back office de WP est chargé
+add_action( 'admin_menu', 'contact_menu' );
+
+function contact_menu() {
+	add_menu_page( 'Demandes de contact', 'Demandes de contact', 'manage_options', 'demande-de-contact', 'contact_page' );
+}
+
+function contact_page() {
+    global $wpdb;
+	if ( !current_user_can( 'manage_options' ) )  {
+		wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
+    } ?>
+
+	<div class="wrap">
+        <h1>Demandes de contact</h1>
+
+        <?php $contacts = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}contact"); ?>
+            
+        <table class="wp-list-table widefat fixed striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Référence</th>
+                    <th>Annonce</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Message</th>
+                </tr>
+            </thead>
+            <?php foreach ($contacts as $contact) { ?>
+                <tr>
+                    <td><?= $contact->id ?></td>
+                    <td><?= $contact->reference ?></td>
+                    <td>
+                        <a target="_blank" href="<?php the_permalink($contact->housing_id) ?>">Voir l'annonce</a>
+                    </td>
+                    <td><?= $contact->lastname ?></td>
+                    <td><?= $contact->firstname ?></td>
+                    <td><?= $contact->message ?></td>
+                </tr>
+            <?php } ?>
+        </table>
+        
+        1/ Récupérer la liste des demandes de contact
+        2/ Parcourir cette liste et l'afficher dans un tableau HTML
+	</div>
+<?php }

@@ -1,0 +1,61 @@
+/*
+Theme Name:   Immobiliare
+Theme URI:    https://wp.boxydev.com/theme/immobiliare
+Description:  Un thème pour les agences immobilières
+Author:       Vous
+Author URI:   https://vous.fr
+Version:      1.0.0
+License:      GNU General Public License v2 or later
+License URI:  http://www.gnu.org/licenses/gpl-2.0.html
+*/
+
+$color: lightgray;
+
+@import '../../node_modules/bootstrap/scss/bootstrap';
+
+body {
+    background-color: $color;
+    font-family: 'Nunito', sans-serif;
+}
+
+.card-link {
+    color: #000;
+    text-decoration: none;
+
+    .card {
+        transition: 0.5s;
+    }
+
+    &:hover .card {
+        transform: scale(1.2);
+    }
+}
+
+.article-image {
+    height: 400px;
+    background-position: top center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.card {
+	margin-top: -50px;
+	border: 0;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, .1), 0 4px 6px -2px rgba(0, 0, 0, .05);
+    
+    .card-img-top {
+        object-fit: fill; /* Transforme une balise img en background-image */
+        max-height: 170px;
+        transform: scale(1.06);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, .1), 0 2px 4px -1px rgba(0, 0, 0, .06);
+    }
+    
+    .card-title {
+        font-size: 15px;
+        font-weight: 700;
+    }
+    
+    .card-price, .card-text {
+        font-size: 12px;
+    }
+}
